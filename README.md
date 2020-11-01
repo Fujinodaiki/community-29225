@@ -44,7 +44,6 @@ Things you may want to cover:
 | Column  | Type   | Options     |
 | ------- | ------ | ----------- |
 | name    | string | null: false |
-| password| string |             |
 | category| string | null: false |
 | comment | text   | null: false |
 
