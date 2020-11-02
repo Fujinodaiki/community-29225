@@ -1,0 +1,14 @@
+<h1>MyPage</h1>
+<ul>
+  <li>コミュニティの新規作成はこちら<br>
+    <%= link_to 'コミュニティの新規作成はこちらから！', new_room_url %>
+  </li>
+  <li>加入済みのコミュニティ一覧<br></li>
+  <% @user.room_users.each do|u| %>
+  <%= u.room.name %>
+  <% end %>
+  <li>コミュニティを検索</li>
+  <li>承認</li>
+  <li>承認待ちのコミュニティ</li>
+</ul>
+</div>

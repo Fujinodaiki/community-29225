@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
  
+  get 'users/show'
   devise_for :users
-  resources :messages, only: [:index,]
-  root to: "messages#index"
-  resources :rooms, only: [:new, :create]
+  root to: "rooms#index"
+  resources :rooms, only: [:index,:new, :create]
+  resources :users, only: :show
 end
