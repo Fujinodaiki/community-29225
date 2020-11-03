@@ -1,0 +1,8 @@
+<%= form_with(url: search_rooms_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "コミュニティを検索する" %>
+  <%= form.submit "検索"%>
+<% end %>
+
+<% @search.each do |room| %>
+<%= link_to room.name, room_path(room.id) %>
+<%end%>

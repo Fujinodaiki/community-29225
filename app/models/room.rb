@@ -4,11 +4,11 @@ class Room < ApplicationRecord
   has_many :messages
   has_many :applys
 
-  def search(search)
+  def self.search(search)
     if search != ""
-      Room.where('text LIKE(?)',"%#{search}%")      
+      Room.where('name LIKE(?)', "%#{search}%")
     else
       Room.all
-    end    
+    end
   end
 end

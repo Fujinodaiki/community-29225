@@ -21,7 +21,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  def serach
+  def search
     @search = Room.search(params[:keyword]) 
   end
 
