@@ -7,4 +7,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 6 }
   has_many :room_users
   has_many :rooms, through: :room_users
+  has_many :messages
+  has_many :applys
 end

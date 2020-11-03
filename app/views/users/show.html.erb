@@ -1,0 +1,24 @@
+<h1>MyPage</h1>
+<h2>コミュニティを検索</h2>
+<%= form_with(url: search_rooms_path, local: true, method: :get) do |form| %>
+  <%= form.text_field :keyword, placeholder: "コミュニティを検索する"%>
+  <%= form.submit "検索"%>
+<% end %>
+<ul>
+  <li>コミュニティの新規作成はこちら<br>
+    <%= link_to 'コミュニティの新規作成はこちらから！', new_room_url %>
+  </li>
+  <li>加入済みのコミュニティ一覧<br></li>
+  <% @user.room_users.each do|u| %>
+  <%= link_to u.room.name, room_messages_path(u) %><br>
+  <% end %>
+  <li>承認<br>
+  <% @apply.each do |app| %>
+    <%if app.room.user_id == current_user.id%>
+      <%= "#{app.room.name}:申請者#{app.user.name}" %><%=link_to '承認', room_room_users_path(app.room_id,user_id: app.user_id,apply_id: app.id),method: :post%><br>
+    <%end%>
+  <%end%>
+  </li>
+  <li>承認待ちのコミュニティ</li>
+</ul>
+</div>
