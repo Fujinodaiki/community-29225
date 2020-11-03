@@ -38,6 +38,7 @@ Things you may want to cover:
 - has_many :room_users
 - has_many :rooms,through:room_users
 - has_many :messages
+- has_many :applys
 
 ## roomsテーブル
 
@@ -53,6 +54,7 @@ Things you may want to cover:
 - has_many :room_users
 - has_many :users,through:room_users
 - has_many :massages
+- has_many :applys
 
 
 ## room_users テーブル
@@ -79,3 +81,16 @@ Things you may want to cover:
 
 - belongs_to :room
 - belongs_to :user
+
+
+## applys テーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     |                                |
+| user    | references | null: false, foreign_key: true |
+| room    | references | null: false, foreign_key: true |
+
+## Association
+
+- belongs_to :user
+- belongs_to :room
