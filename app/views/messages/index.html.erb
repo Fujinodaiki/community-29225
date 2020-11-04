@@ -1,2 +1,16 @@
-<h1>チャット画面</h1>
-<%=link_to '詳細', room_url(@room.id) %>
+<h1><%=@room.name%></h1>
+<h2>
+<%=link_to 'コミュニティ詳細', room_url(@room.id) %>
+<%= form_with model: [@room, @message], local: true do |f| %>
+  <%= f.text_field :content, placeholder: 'チャットできるよ' %>
+  <%= f.submit '送信', class: 'form-submit' %>
+<% end %>
+</h2>
+<br>
+<h4>
+<% @messages.each do |message|%>
+<%= "投稿者：#{message.user.name}" %><br>
+<%= "投稿日時：#{message.created_at}" %><br>
+<%= "メッセージ：#{message.content}" %><br><br>
+<%end%>
+</h4>

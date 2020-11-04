@@ -1,2 +1,10 @@
-詳細画面
-<%= link_to '加入申請',  room_applies_path(@room.id, user_id: current_user.id), method: :post %>
+<h1>コミュニティの詳細画面</h1><br>
+<h2><%= "コミュニティ名:#{@room.name}"%></h2><br>
+<%@room.users.each do |user|%>
+  <%if user.id == @room.user_id%>
+   <h2><%= "コミュニティ設立者:#{user.name}"%></h2><br>
+  <%end%>
+<%end%>
+<h2>コミュニティ説明</h2>
+<h2><%=@room.comment%></h2>
+<h2><%= link_to '加入申請',  room_applies_path(@room.id, user_id: current_user.id), method: :post %></h2>

@@ -1,24 +1,49 @@
 <h1>MyPage</h1>
+<br>
+<br>
 <h2>コミュニティを検索</h2>
+<h2>
 <%= form_with(url: search_rooms_path, local: true, method: :get) do |form| %>
   <%= form.text_field :keyword, placeholder: "コミュニティを検索する"%>
   <%= form.submit "検索"%>
 <% end %>
+</h2>
+<br>
+<br>
+<h3>
 <ul>
   <li>コミュニティの新規作成はこちら<br>
     <%= link_to 'コミュニティの新規作成はこちらから！', new_room_url %>
   </li>
+  <br>
+  <br>
   <li>加入済みのコミュニティ一覧<br></li>
   <% @user.room_users.each do|u| %>
-  <%= link_to u.room.name, room_messages_path(u) %><br>
+  <%= link_to u.room.name, room_messages_path(u.room_id) %><br>
   <% end %>
+  <br>
+  <br>
   <li>承認<br>
-  <% @apply.each do |app| %>
-    <%if app.room.user_id == current_user.id%>
-      <%= "#{app.room.name}:申請者#{app.user.name}" %><%=link_to '承認', room_room_users_path(app.room_id,user_id: app.user_id,apply_id: app.id),method: :post%><br>
+    <% @apply.each do |app| %>
+      <%if app.room.user_id == current_user.id%>
+        <%= "#{app.room.name}:申請者#{app.user.name}" %><%=link_to '承認', room_room_users_path(app.room_id,user_id: app.user_id,apply_id: app.id),method: :post%><br>
+        <%@count += 1%>
+      <%end%>
+    <%end%>
+    <%="あなたへの承認依頼は#{@count}件です。"%>
+  </li>
+  <br>
+  <br>
+  <li>承認待ちのコミュニティ<br>
+  <%@count = 0%>
+  <%@apply.each do |app|%>
+    <%if app.user_id == current_user.id%>
+      <%= app.room.name%><br>
+      <%@count += 1%>
     <%end%>
   <%end%>
+  <%="承認待ちは#{@count}件です。"%>
   </li>
-  <li>承認待ちのコミュニティ</li>
 </ul>
+</h3>
 </div>
